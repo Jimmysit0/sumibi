@@ -1,0 +1,63 @@
+#+TITLE: Sumibi
+
+* What's this?
+  This is my personal Emacs config, based on [[https://github.com/rougier/nano-emacs][GNU Emacs / N Λ N O]].
+
+* Dependencies
+  [[https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip][Fira Code]] & [[https://github.com/googlefonts/RobotoMono][Roboto Mono]] are the only dependencies.
+
+  You also need [[https://www.gnu.org/software/emacs/][Emacs]], but that's pretty obvious isn't it?
+
+* Install
+  Move all the files to an entirely clean ~/.emacs.d
+
+* Shortcuts
+
+  #+BEGIN_SRC
+  [M-h]     Show keybinds
+
+  [C-w]     Copy
+  [C-y]     Paste
+  [M-w]     Cut
+  [C-/]     Undo
+  [C-s]     Search
+  [M-x]     Command
+  [C-g]     Cancel
+  [C-x C-c] Quit
+
+  [C-x f]    Find File
+  [C-x d]    Dired
+  [C-x s]    Save Buffer
+  [C-x w]    Write Buffer
+  [C-x <-]   Move between buffers (left)
+  [C-x ->]   Move between buffers (right)
+  [C-x 1]    Unfocus the other buffers
+  [C-x 2]    Split Window below
+  [C-x 3]    Split Window Right
+  [C-x o]    Other Window
+
+  [M-:]      Eval
+
+  [C-q]      LaTeX toogle panel
+
+  [C-c C-k]  Eval buffer (Clojure)
+  #+END_SRC
+
+*** ON HOLD
+
+  + [ ] Better code format!
+  + [ ] Tabs!
+  + [ ] Docs!
+
+* Gallery
+
+* Preview [[https://cdn.discordapp.com/attachments/655947537538088962/819920918302162974/unknown.png]]
+
+* Splash Screen
+[[https://cdn.discordapp.com/attachments/743573851685912629/819947446285238333/unknown.png]]
+
+* Rich Presence
+[[https://cdn.discordapp.com/attachments/801441065646555154/819948109957824572/unknown.png]]
+
+* NOTE
+If you're gonna use my config, make sure to give me the proper credit to me, and this repository, and preferably, contact me first through discord: Jimmy.deb#0001
