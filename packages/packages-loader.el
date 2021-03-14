@@ -8,6 +8,9 @@
 ;;; Languages --- Everything related to the languages (plugins) :)
 (require 'langs)
 
+;;; Lsp mode and others --- Configuration for LSP mode & some extra stuff
+(require 'lsp-mode)
+
 ;;; Utils --- Various tools :)
 (require 'utils)
 

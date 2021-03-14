@@ -2,10 +2,6 @@
 
 ;; -*- lexical-binding: t; -*-
 
-
-;; y-or-n to answer
-(defalias 'yes-or-no-p 'y-or-n-p)
-
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t

@@ -18,7 +18,7 @@
    '(lsp-dired-path-error-face ((t (:underline (:color "#B4637A" :style wave)))))
    '(lsp-dired-path-hint-face ((t (:underline (:color "#286983" :style wave)))))
    '(lsp-dired-path-info-face ((t (:underline (:color "#286983" :style wave)))))
-   '(lsp-dired-path-warning-face ((t (:underline (:color "#ea9d34" :style wave)))))
+   '(lsp-dired-path-warning-face ((t (:underline (:color "#E5E5E5" :style wave)))))
    '(lsp-headerline-breadcrumb-path-error-face
      ((t (:inherit lsp-headerline-breadcrumb-path-face :underline (:color "#B4637A" :style wave)))))
    '(lsp-headerline-breadcrumb-path-hint-face
@@ -26,7 +26,7 @@
    '(lsp-headerline-breadcrumb-path-info-face
      ((t (:inherit lsp-headerline-breadcrumb-path-face :underline (:color "#286983" :style wave)))))
    '(lsp-headerline-breadcrumb-path-warning-face
-     ((t (:inherit lsp-headerline-breadcrumb-path-face :underline (:color "#ea9d34" :style wave)))))
+     ((t (:inherit lsp-headerline-breadcrumb-path-face :underline (:color "#E5E5E5" :style wave)))))
    '(lsp-headerline-breadcrumb-symbols-error-face
      ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline (:color "#B4637A" :style wave)))))
    '(lsp-headerline-breadcrumb-symbols-hint-face
@@ -45,12 +45,14 @@
    '(lsp-ui-doc-header         ((t (:background "#F2E9DE" :foreground "#6e6a86"))))
    '(lsp-ui-peek-filename      ((t (:foreground "#9893A5"))))
    '(lsp-ui-peek-header        ((t (:background "#F2E9DE" :foreground "#575279"))))
-   '(lsp-ui-peek-highlight     ((t (:background "#F2E9DE" :box (:line-width (1 . -1) :color "#ea9d34")))))
+   '(lsp-ui-peek-highlight     ((t (:background "#F2E9DE" :box (:line-width (1 . -1) :color "#E5E5E5")))))
    '(lsp-ui-peek-list          ((t (:background "#F2E9DE"))))
    '(lsp-ui-peek-peek          ((t (:background "#F2E9DE"))))
    '(lsp-ui-peek-selection     ((t (:background "#F2E9DE" :foreground "#575279")))))
   (setq lsp-ui-sideline nil
         lsp-ui-doc-enable nil))
+
+;;; --- flycheck --- this shouldn't be here, but I'm too lazy to move it :p
 
 (use-package flycheck
   :hook (after-init . global-flycheck-mode)
@@ -59,8 +61,8 @@
    '(flycheck-error        ((t (:underline (:color "#B4637A" :style wave)))))
    '(flycheck-info         ((t (:underline (:color "#286983" :style wave)))))
    '(flycheck-info-face    ((t (:underline (:color "#286983" :style wave)))))
-   '(flycheck-warning      ((t (:underline (:color "#ea9d34" :style wave)))))
-   '(flycheck-warning-face ((t (:underline (:color "#ea9d34" :style wave))))))
+   '(flycheck-warning      ((t (:underline (:color "#E5E5E5" :style wave)))))
+   '(flycheck-warning-face ((t (:underline (:color "#E5E5E5" :style wave))))))
   (setq flycheck-idle-change-delay 1.0
         flycheck-buffer-switch-check-intermediate-buffers t
         flycheck-display-errors-delay 0.25)
@@ -94,15 +96,6 @@
         company-dabbrev-other-buffers nil
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil))
-
-
-;; -- `Writeroom' distraction-less enviroment
-(use-package writeroom-mode
-  :hook (prog-mode . writeroom-mode)
-  :custom
-  (writeroom-fullscreen-effect 'maximized)
-  (writeroom-width 132))
-
 
 ;;; -- Language support (LSP)
 
