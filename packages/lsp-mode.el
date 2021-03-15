@@ -52,23 +52,6 @@
   (setq lsp-ui-sideline nil
         lsp-ui-doc-enable nil))
 
-;;; --- flycheck --- this shouldn't be here, but I'm too lazy to move it :p
-
-(use-package flycheck
-  :hook (after-init . global-flycheck-mode)
-  :config
-  (custom-set-faces
-   '(flycheck-error        ((t (:underline (:color "#B4637A" :style wave)))))
-   '(flycheck-info         ((t (:underline (:color "#286983" :style wave)))))
-   '(flycheck-info-face    ((t (:underline (:color "#286983" :style wave)))))
-   '(flycheck-warning      ((t (:underline (:color "#E5E5E5" :style wave)))))
-   '(flycheck-warning-face ((t (:underline (:color "#E5E5E5" :style wave))))))
-  (setq flycheck-idle-change-delay 1.0
-        flycheck-buffer-switch-check-intermediate-buffers t
-        flycheck-display-errors-delay 0.25)
-  :custom
-  (flycheck-check-syntax-automatically '(save mode-enabled)))
-
 (use-package company
   :config
   (custom-set-faces

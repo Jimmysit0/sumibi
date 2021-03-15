@@ -2,6 +2,15 @@
 
 ;; -*- lexical-binding: t; -*-
 
+;; Detect system type
+(defconst *IS-LINUX*   (eq system-type 'gnu/linux))
+(defconst *IS-MAC*     (eq system-type 'darwin))
+
+;; Remove command line options that aren't relevant to our current OS; means
+;; slightly less to process at startup.
+(unless *IS-MAC*   (setq command-line-ns-option-alist nil))
+(unless *IS-LINUX* (setq command-line-x-option-alist nil))
+
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t

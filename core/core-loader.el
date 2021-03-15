@@ -6,4 +6,7 @@
 ;;; Straight setup --- Faster startup & manage some package manager utilities
 (require 'straight-setup)
 
+;;; Layout --- defines some minor tweaks, the font used and so on
+(require 'sumibi-layout)
+
 (provide 'core-loader)
