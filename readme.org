@@ -1,7 +1,7 @@
 #+TITLE: Sumibi
 
 * What's this?
-  This is my personal Emacs config, based on [[https://github.com/rougier/nano-emacs][GNU Emacs / N Λ N O]].
+  This is my personal Emacs config, based on [[https://github.com/rougier/nano-emacs][GNU Emacs / N Λ N O]]
 
 * Dependencies
   [[https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip][Fira Code]] & [[https://github.com/googlefonts/RobotoMono][Roboto Mono]] are the only dependencies.
@@ -57,7 +57,4 @@
 [[https://cdn.discordapp.com/attachments/743573851685912629/819947446285238333/unknown.png]]
 
 * Rich Presence
-[[https://cdn.discordapp.com/attachments/801441065646555154/819948109957824572/unknown.png]]
-
-* NOTE
-If you're gonna use my config, make sure to give me the proper credit to me, and this repository, and preferably, contact me first through discord: Jimmy.deb#0001
+[[https://cdn.discordapp.com/attachments/743573851685912629/820809384925200394/unknown.png]]
