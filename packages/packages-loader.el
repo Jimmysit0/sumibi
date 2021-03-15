@@ -5,9 +5,6 @@
 (require 'elcord)
 (elcord-mode)
 
-;;; Yasnippet --- This is pretty self explanatory, don't you think so?
-(require 'yasnippet)
-
 ;;; Languages --- Everything related to the languages (plugins) :)
 (require 'langs)
 
@@ -16,5 +13,8 @@
 
 ;;; Utils --- Various tools :)
 (require 'utils)
+
+;;; Yasnippet --- This is pretty self explanatory, don't you think so?
+(require 'yasnippet)
 
 (provide 'packages-loader)
