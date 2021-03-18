@@ -60,8 +60,6 @@
       mouse-wheel-progressive-speed nil
       jit-lock-defer-time 0)
 
-(add-hook 'before-save-hook 'whitespace-cleanup)  ; Delete whitespaces before closing a file
-
 (setq backup-directory-alist                      ; Backups files' home
           `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
