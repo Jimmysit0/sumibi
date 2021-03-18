@@ -122,5 +122,14 @@
 (use-package transient)
 (use-package posframe)
 
+;; Better whitespace management
+(straight-use-package
+ '(ws-butler
+   :hook (after-init . ws-butler-global-mode)
+   :host github
+   :repo "hlissner/ws-butler"
+   :branch "master"
+   :config
+   (setq ws-butler-keep-whitespace-before-point nil)))
 
 (provide 'utils)
