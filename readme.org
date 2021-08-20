@@ -1,0 +1,54 @@
+#+TITLE: Sumibi
+
+* What's this?
+  This is my personal Emacs config. 
+
+* Dependencies
+  You need the Comic Code & Captain Code fonts. 
+
+  You also need [[https://www.gnu.org/software/emacs/][Emacs]] (Both 27.x and 28.x work.), but that's pretty obvious isn't it?
+
+* Install
+  Move all the files to an entirely clean ~/.emacs.d
+
+* Shortcuts
+
+  #+BEGIN_SRC
+  [M-w]     Copy
+  [C-y]     Paste
+  [C-/]     Undo
+  [C-s]     Search
+  [M-x]     Command
+  [C-g]     Cancel
+  [C-x C-c] Quit
+
+  [C-x d]    Dired
+  [C-x s]    Save Buffer
+  [C-x w]    Write Buffer
+  [C-x <-]   Move between buffers (left)
+  [C-x ->]   Move between buffers (right)
+  [C-x 1]    Unfocus the other buffers
+  [C-x 2]    Split Window below
+  [C-x 3]    Split Window Right
+  [C-x o]    Other Window
+
+  [M-:]      Eval
+
+  [C-q]      LaTeX toogle panel
+
+  [C-c C-k]  Eval buffer (Clojure)
+  #+END_SRC
+
+*** ON HOLD
+
+  + [ ] Fix eww [untitled] 
+  + [ ] Docs!
+  + [ ] Proper readme
+  + [ ] Snippets   
+
+* Gallery
+
+* Preview [[https://media.discordapp.net/attachments/861446424700780594/877653836016279562/unknown.png]]
+
+* Splash Screen
+[[https://media.discordapp.net/attachments/775742385861689365/877646283974783026/unknown.png]]
