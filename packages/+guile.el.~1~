@@ -1,4 +1,4 @@
-;; guile -*- lexical-binding: t; -*-
+;; Koa -*- lexical-binding: t; -*-
 
 (use-package geiser-guile)
 

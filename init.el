@@ -13,10 +13,11 @@
   +elcord
   +parentheses
   +latex
-  +c
-  +git
+  +buffer-move
   +ctrlf
-  +guile
+  ;;+guile
+  ;;+git
   ;;+cl
   ;;+parinfer
+  ;;+c
   )
