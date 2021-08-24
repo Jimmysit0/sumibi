@@ -17,11 +17,8 @@
 ;; -- `CIDER' specifics
 (add-hook 'cider-mode-hook 'eldoc-mode)           ; Minibuffer documentation for the code you're typing into the repl
 (setq cider-repl-pop-to-buffer-on-connect t)      ; Go right to the REPL buffer when it's finished connecting
-(setq cider-show-error-buffer t)                  ; When there's a cider error, show its buffer and switch to it
-(setq cider-auto-select-error-buffer t)
-(setq cider-repl-history-file                     ; Where to store cider's history
-          "~/.emacs.d/cider-history")
-(setq cider-repl-wrap-history t)                  ; Wrap when navigating history.
+(setq cider-show-error-buffer nil)                  ; When there's a cider error, show its buffer and switch to it
+(setq cider-repl-display-help-banner nil)
 
 (eval-after-load 'cider
   '(progn
