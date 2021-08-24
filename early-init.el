@@ -25,6 +25,3 @@
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
-;; Stop creating backup files
-;; from: https://stackoverflow.com/questions/12031830/what-are-file-and-file-and-how-can-i-get-rid-of-them
-(setq make-backup-files nil)
