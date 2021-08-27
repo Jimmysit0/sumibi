@@ -23,6 +23,7 @@
   [C-x C-c] Quit
 
   [C-x d]    Dired
+  [C-x C-f]  Search files
   [C-x s]    Save Buffer
   [C-x w]    Write Buffer
   [C-x <-]   Move between buffers (left)
@@ -30,7 +31,6 @@
   [C-x 1]    Unfocus the other buffers
   [C-x 2]    Split Window below
   [C-x 3]    Split Window Right
-  [C-x o]    Other Window
 
   [M-:]      Eval
 
@@ -38,13 +38,6 @@
 
   [C-c C-k]  Eval buffer (Clojure)
   #+END_SRC
-
-*** ON HOLD
-
-  + [ ] Fix eww [untitled] 
-  + [ ] Docs!
-  + [ ] Proper readme
-  + [ ] Snippets   
 
 * Gallery
 

@@ -6,15 +6,15 @@
 ;; packages
 (sumibi/init
   +sumibi-theme
-  +clojure
-  +flycheck
-  +org
+  +parentheses
+  +buffer-move
+  +ctrls
   +screenshot
   +elcord
-  +parentheses
+  +clojure
+  +flycheck
   +latex
-  +buffer-move
-  +ctrlf
+  +org
   ;;+guile
   ;;+git
   ;;+cl

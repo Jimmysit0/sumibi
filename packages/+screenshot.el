@@ -1,6 +1,4 @@
-;; c/c++ -*- lexical-binding: t; -*-
-
-;; git goodies
+;; screenshot -*- lexical-binding: t; -*-
 
 (straight-use-package
  '(screenshot

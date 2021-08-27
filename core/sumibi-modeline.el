@@ -72,6 +72,17 @@
                                       :foreground ,sumibi-color-faded)))))
 
 ;; ---------------------------------------------------------------------
+(defun sumibi-modeline-mu4e-dashboard-mode-p ()
+  (bound-and-true-p mu4e-dashboard-mode))
+
+(defun sumibi-modeline-mu4e-dashboard-mode ()
+  (sumibi-modeline-compose (sumibi-modeline-status)
+                         "Mail"
+                         (sumibi-modeline-mu4e-context)
+                         (format "%d messages" (plist-get mu4e~server-props :doccount))
+                         ))
+
+;; ---------------------------------------------------------------------
 
 ;; since the EIN library itself is constantly re-rendering the notebook, and thus
 ;; re-setting the header-line-format, we cannot use the sumibi-modeline function to set
@@ -223,6 +234,65 @@
                          "Terminal"
                          (concat "(" shell-file-name ")")
                          (shorten-directory default-directory 32)))
+
+;; ---------------------------------------------------------------------
+(defun sumibi-modeline-mu4e-main-mode-p ()
+  (derived-mode-p 'mu4e-main-mode))
+
+(defun sumibi-modeline-mu4e-main-mode ()
+  (sumibi-modeline-compose (sumibi-modeline-status)
+                         "Mail"
+                         (sumibi-modeline-mu4e-context)
+                         (format-time-string "%A %d %B %Y, %H:%M")))
+
+;; ---------------------------------------------------------------------
+(defun sumibi-modeline-mu4e-headers-mode-p ()
+  (derived-mode-p 'mu4e-headers-mode))
+
+(defun sumibi-modeline-mu4e-headers-mode ()
+  (sumibi-modeline-compose (sumibi-modeline-status)
+                         (mu4e~quote-for-modeline mu4e~headers-last-query)
+                         ""
+                         ""))
+
+(with-eval-after-load 'mu4e
+  (defun mu4e~header-line-format () (sumibi-modeline)))
+
+;; ---------------------------------------------------------------------
+(setq mu4e-modeline-max-width 72)
+
+(defun sumibi-modeline-mu4e-view-mode-p ()
+  (derived-mode-p 'mu4e-view-mode))
+
+(defun sumibi-modeline-mu4e-view-mode ()
+  (let* ((msg     (mu4e-message-at-point))
+         (subject (mu4e-message-field msg :subject))
+         (from    (mu4e~headers-contact-str (mu4e-message-field msg :from)))
+         (date     (mu4e-message-field msg :date)))
+    (sumibi-modeline-compose (sumibi-modeline-status)
+                           (s-truncate 40 subject "…")
+                           ""
+                           from)))
+
+(defun sumibi-modeline-mu4e-view-hook ()
+  (setq header-line-format "%-")
+  (face-remap-add-relative 'header-line
+                           '(:background "#ffffff"
+                                         :underline nil
+                                         :box nil
+                                         :height 1.0)))
+(add-hook 'mu4e-view-mode-hook #'sumibi-modeline-mu4e-view-hook)
+
+
+;; ---------------------------------------------------------------------
+(defun sumibi-modeline-sumibi-help-mode-p ()
+  (derived-mode-p 'sumibi-help-mode))
+
+(defun sumibi-modeline-sumibi-help-mode ()
+  (sumibi-modeline-compose (sumibi-modeline-status)
+                         "GNU Emacs / N Λ N O"
+                         "(help)"
+                         ""))
 
 ;; ---------------------------------------------------------------------
 (defun sumibi-modeline-message-mode-p ()
@@ -388,7 +458,15 @@
     (cond (modified  "OH") (read-only "RO") (t "OK"))))
   
 ;; ---------------------------------------------------------------------
+(defun sumibi-modeline-mu4e-context ()
+  "Return the current mu4e context as a non propertized string."
 
+  (if (> (length (mu4e-context-label)) 0)
+      (concat "(" (substring-no-properties (mu4e-context-label) 1 -1) ")")
+    "(none)"))
+
+
+;; ---------------------------------------------------------------------
 (defun sumibi-modeline ()
   "Install a header line whose content is dependend on the major mode"
   (interactive)
@@ -406,6 +484,10 @@
            ((sumibi-modeline-org-clock-mode-p)       (sumibi-modeline-org-clock-mode))
            ((sumibi-modeline-term-mode-p)            (sumibi-modeline-term-mode))
            ((sumibi-modeline-vterm-mode-p)           (sumibi-modeline-term-mode))
+           ((sumibi-modeline-mu4e-dashboard-mode-p)  (sumibi-modeline-mu4e-dashboard-mode))
+           ((sumibi-modeline-mu4e-main-mode-p)       (sumibi-modeline-mu4e-main-mode))
+           ((sumibi-modeline-mu4e-headers-mode-p)    (sumibi-modeline-mu4e-headers-mode))
+;;         ((sumibi-modeline-mu4e-view-mode-p)       (sumibi-modeline-mu4e-view-mode))
            ((sumibi-modeline-text-mode-p)            (sumibi-modeline-default-mode))
            ((sumibi-modeline-pdf-view-mode-p)        (sumibi-modeline-pdf-view-mode))
 	   ((sumibi-modeline-docview-mode-p)         (sumibi-modeline-docview-mode))
@@ -435,6 +517,3 @@ below or a buffer local variable 'no-mode-line'."
 (sumibi-modeline)
 
 (provide 'sumibi-modeline)
-
-
-
