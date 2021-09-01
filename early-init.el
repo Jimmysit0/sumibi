@@ -25,3 +25,7 @@
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
+;; Stop emaca beeps
+(setq ring-bell-function 'ignore)
+
+

@@ -5,11 +5,12 @@
 (setq sumibi-font-family-monospaced "Comic Code"
           sumibi-font-size 13)
 
-(add-to-list 'command-switch-alist '("-light"  . (lambda (args))))
-(add-to-list 'command-switch-alist '("-default"  . (lambda (args))))
+(add-to-list 'command-switch-alist '("--light"  . (lambda (args))))
+(add-to-list 'command-switch-alist '("--dark"   . (lambda (args))))
 
 (cond
- ((member "-default" command-line-args) t)
+ ((member "--default" command-line-args) t)
+ ((member "--dark" command-line-args) (require 'sumibi-theme-dark))
  (t (require 'sumibi-theme-light)))
 
 (require 'sumibi-faces)

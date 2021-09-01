@@ -1,17 +1,19 @@
-;;; light-theme -*- lexical-binding: t; -*-
+;;; dark-theme -*- lexical-binding: t; -*-
 
 (require 'sumibi-base-colors)
+
 (defun sumibi-theme-set-dark ()
   (setq frame-background-mode    'dark)
-  (setq sumibi-color-foreground "#575279")
-  (setq sumibi-color-strong     "#000000")
-  (setq sumibi-color-background "#faf4ed")
-  (setq sumibi-color-highlight  "#faf4ed")
-  (setq sumibi-color-critical   "#b4637a")
-  (setq sumibi-color-salient    "#907aa9")
-  (setq sumibi-color-popout     "#d7827e")
-  (setq sumibi-color-subtle     "#fffaf3")
-  (setq sumibi-color-faded      "#9893a5"))
+  (setq sumibi-color-foreground "#ECEFF4")
+  (setq sumibi-color-strong     "#ECEFF4")
+  (setq sumibi-color-background "#131a21")
+  (setq sumibi-color-highlight  "#434C5E")
+  (setq sumibi-color-critical   "#f9929b")
+  (setq sumibi-color-salient    "#d7c1ed")
+  (setq sumibi-color-popout     "#7ed491")
+  (setq sumibi-color-subtle     "#434C5E")
+  (setq sumibi-color-faded      "#bac8ef"))
+
 (sumibi-theme-set-dark)
 
 (provide 'sumibi-theme-dark)
