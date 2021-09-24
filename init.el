@@ -12,6 +12,7 @@
   +screenshot
   +elcord
   +clojure
+  +nix
   +flycheck
   +latex
   +org

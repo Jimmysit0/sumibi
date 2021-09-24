@@ -315,5 +315,79 @@ background color that is barely perceptible."
                       :inherit 'sumibi-face-header-faded
                       :box nil))
 
+ (defun sumibi-theme--flyspell ()
+  "Derive flyspell faces from sumibi faces."
+  (with-eval-after-load 'flyspell
+    (set-face 'flyspell-duplicate                     'sumibi-face-default)
+    (set-face-attribute 'flyspell-incorrect nil
+                  :inherit 'sumibi-face-critical)))
+
+(defun sumibi-theme--flycheck ()
+  "Derive flycheck faces from sumibi faces."
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil
+                        :underline `(:style wave :color ,sumibi-color-critical)    :background sumibi-color-background)
+    (set-face-attribute 'flycheck-warning nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-info  nil
+                        :underline `(:style wave :color ,sumibi-color-faded)
+                        :background sumibi-color-background)))
+
+(defun sumibi-theme--company ()
+  "Derive company faces from sumibi faces."
+  (with-eval-after-load 'company
+    (set-face 'company-echo-common              'sumibi-face-faded)
+    (set-face 'company-preview-common           'sumibi-face-default)
+    (set-face 'company-preview-search           'sumibi-face-faded)
+    (set-face 'company-scrollbar-bg             'sumibi-face-default)
+    (set-face 'company-scrollbar-fg             'sumibi-face-default)
+    (set-face 'company-tooltip-annotation       'sumibi-face-faded)
+    (set-face 'company-tooltip-common           'sumibi-face-faded)
+    (set-face-attribute 'company-tooltip-common-selection nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical :weight 'bold)
+    (set-face-attribute 'company-tooltip-selection nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical)
+    (set-face-attribute 'company-preview nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'company-tooltip nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)))
+
+(defun sumibi-theme--ctrlf ()
+  "Derive ctrlf faces from sumibi faces."
+  (with-eval-after-load 'ctrlf
+    (set-face 'ctrlf-highlight-active 'sumibi-face-strong)
+    (set-face 'ctrlf-highlight-line   'sumibi-face-highlight)))
+
+(defun sumibi-theme--rainbow-delimiters ()
+  "Derive rainbow-delimiters faces from sumibi faces."
+  (with-eval-after-load 'rainbow-delimiters
+    (set-face-attribute 'rainbow-delimiters-depth-1-face nil
+                        :foreground sumibi-color-critical)
+    (set-face-attribute 'rainbow-delimiters-depth-2-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-3-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-4-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-5-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-6-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-7-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-8-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-depth-9-face nil
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'rainbow-delimiters-base-error-face nil
+                        :foreground sumibi-color-critical
+                        :background sumibi-color-background :weight 'bold)))
+
+
 (provide 'sumibi-faces)
 ;;; sumibi-faces.el ends here
