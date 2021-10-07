@@ -49,5 +49,4 @@
       (progn (message nil)
              (kill-buffer "*splash*"))))
 
-
 (provide 'sumibi-splash)

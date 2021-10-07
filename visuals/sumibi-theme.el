@@ -79,7 +79,10 @@
   (set-face 'isearch-fail                              'sumibi-face-faded)
   (set-face 'lazy-highlight                           'sumibi-face-subtle)
   (set-face 'trailing-whitespace                      'sumibi-face-subtle)
-  (set-face 'show-paren-match                         'sumibi-face-popout)
+  (set-face-attribute 'show-paren-match nil
+                      :foreground sumibi-color-foreground
+                      :background sumibi-color-background
+                      :weight 'bold)
   (set-face 'show-paren-mismatch                           'face-normal)
   (set-face-attribute 'tooltip nil                         :height 0.85)
   (set-face 'secondary-selection                      'sumibi-face-subtle)
@@ -323,13 +326,64 @@ function is a convenience wrapper used by `describe-package-1'."
       (apply #'insert-text-button button-text
                'face button-face 'follow-link t properties))))
 
-
 (defun sumibi-theme--flyspell ()
   "Derive flyspell faces from sumibi faces."
   (with-eval-after-load 'flyspell
-    (set-face 'flyspell-duplicate                     'sumibi-face-popout)
-    (set-face 'flyspell-incorrect                     'sumibi-face-popout)))
+    (set-face 'flyspell-duplicate                     'sumibi-face-default)
+    (set-face-attribute 'flyspell-incorrect nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)))
 
+(defun sumibi-theme--flycheck ()
+  "Derive flycheck faces from sumibi faces."
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-warning nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-info  nil
+                        :underline `(:style wave :color ,sumibi-color-faded)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-error-list-error  nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical)))
+
+(defun sumibi-theme--ctrlf ()
+  "Derive ctrlf faces from sumibi faces."
+  (with-eval-after-load 'ctrlf
+    (set-face 'ctrlf-highlight-active 'sumibi-face-strong)
+    (set-face-attribute 'ctrlf-highlight-line nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)))
+
+(defun sumibi-theme--rainbow-delimiters ()
+  "Derive rainbow-delimiters faces from sumibi faces."
+  (with-eval-after-load 'rainbow-delimiters
+    (set-face-attribute 'rainbow-delimiters-depth-1-face nil
+                        :foreground "#5C6A6C"
+                        :weight 'bold)
+    (set-face-attribute 'rainbow-delimiters-depth-2-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-depth-3-face nil
+                        :foreground "#E0A1B0")
+    (set-face-attribute 'rainbow-delimiters-depth-4-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-depth-5-face nil
+                        :foreground "#C0AEC6")
+    (set-face-attribute 'rainbow-delimiters-depth-6-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-depth-7-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-depth-8-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-depth-9-face nil
+                        :foreground "#BDC3C4")
+    (set-face-attribute 'rainbow-delimiters-base-error-face nil
+                        :foreground sumibi-color-critical
+                        :background sumibi-color-background
+                        :weight 'bold)))
 
 (defun sumibi-theme--ido ()
   "Derive ido faces from sumibi faces."
@@ -736,6 +790,9 @@ function is a convenience wrapper used by `describe-package-1'."
   (sumibi-theme--rst)
   (sumibi-theme--markdown)
   (sumibi-theme--ivy)
+  (sumibi-theme--flycheck)
+  (sumibi-theme--ctrlf)
+  (sumibi-theme--rainbow-delimiters)
   (sumibi-theme--helm)
   (sumibi-theme--helm-swoop)
   (sumibi-theme--helm-occur)
