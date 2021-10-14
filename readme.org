@@ -41,7 +41,7 @@
 
 * Gallery
 
-* Preview [[https://media.discordapp.net/attachments/861446424700780594/877653836016279562/unknown.png]]
+* Preview [[https://media.discordapp.net/attachments/890786289652228117/898013052488810536/unknown.png]]
 
 * Splash Screen
 [[https://media.discordapp.net/attachments/775742385861689365/877646283974783026/unknown.png]]
