@@ -354,19 +354,13 @@ function is a convenience wrapper used by `describe-package-1'."
     (set-face-attribute 'rainbow-delimiters-depth-2-face nil
                         :foreground sumibi-color-faded)
     (set-face-attribute 'rainbow-delimiters-depth-3-face nil
-                        :foreground sumibi-color-faded)
+                        :foreground sumibi-color-numbers)
     (set-face-attribute 'rainbow-delimiters-depth-4-face nil
-                        :foreground sumibi-color-faded)
+                        :foreground sumibi-color-critical)
     (set-face-attribute 'rainbow-delimiters-depth-5-face nil
-                        :foreground sumibi-color-faded)
+                        :foreground sumibi-color-salient)
     (set-face-attribute 'rainbow-delimiters-depth-6-face nil
-                        :foreground sumibi-color-faded)
-    (set-face-attribute 'rainbow-delimiters-depth-7-face nil
-                        :foreground sumibi-color-faded)
-    (set-face-attribute 'rainbow-delimiters-depth-8-face nil
-                        :foreground sumibi-color-faded)
-    (set-face-attribute 'rainbow-delimiters-depth-9-face nil
-                        :foreground sumibi-color-faded)
+                        :foreground sumibi-color-strong)
     (set-face-attribute 'rainbow-delimiters-base-error-face nil
                         :foreground sumibi-color-critical
                         :background sumibi-color-background

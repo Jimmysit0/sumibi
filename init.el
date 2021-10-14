@@ -6,6 +6,7 @@
 ;; packages
 (sumibi/init
   +sumibi-theme
+  +numbers
   +parentheses
   +buffer-move
   +ctrls
