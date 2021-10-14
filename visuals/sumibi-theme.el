@@ -1,4 +1,4 @@
-;;; sumibi-theme --- Face settings for sumibi-emacs -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
 (require 'sumibi-faces)
 
@@ -12,21 +12,18 @@
                       :underline  'unspecified :overline   'unspecified
                       :box        'unspecified :inherit    style))
 
-
 (defun sumibi-theme--basics ()
   "Derive basic Emacs faces from sumibi-faces and sumibi-color-theme."
-
   (set-foreground-color sumibi-color-foreground)
   (set-background-color sumibi-color-background)
 
-  ;; XXX the following seems to be a no-op, should it be removed?
+  ;; THIS
   (set-face-attribute 'default nil
                       :foreground (face-foreground 'default)
                       :background (face-background 'default)
-                      :weight     'light
+                      :weight     'regular
                       :family     (face-attribute 'sumibi-face-default :family)
                       :height     (face-attribute 'sumibi-face-default :height))
-
   (if (display-graphic-p)
       (set-face-attribute 'bold nil :weight 'regular)
     (set-face-attribute 'bold nil :weight 'bold))
@@ -35,29 +32,29 @@
   (set-face 'bold                                     'sumibi-face-strong)
   (set-face 'italic                                    'sumibi-face-faded)
   (set-face 'bold-italic                              'sumibi-face-strong)
-  (set-face 'region                                   'sumibi-face-subtle)
+  (set-face-attribute 'region nil
+                      :background "#ffd6e8"
+                      :foreground sumibi-color-foreground)
   (set-face 'highlight                                'sumibi-face-subtle)
-  ;;(set-face 'fixed-pitch                                     'default)
   (set-face 'fixed-pitch-serif                       'sumibi-face-default)
-  (set-face 'cursor                                  'sumibi-face-popout)
+  (set-face 'cursor                                  'sumibi-face-default)
   (if 'sumibi-font-family-proportional
       (set-face-attribute 'variable-pitch nil ;; to work with mixed-pitch
                 :foreground (face-foreground 'default)
                 :background (face-background 'default)
                 :family     (face-attribute 'sumibi-face-variable-pitch :family)
-                :height     (face-attribute 'sumibi-face-variable-pitch :height))
+                :height     (face-attribute 'sumibi-face-variable-pitch :height)
+                :weight     'light)
       (set-face 'variable-pitch                     'sumibi-face-default))
 
   (set-face-attribute 'cursor nil
-                      :background (face-foreground 'sumibi-face-popout))
+                      :background sumibi-color-salient)
   (set-face-attribute 'window-divider nil
                       :foreground (face-background 'sumibi-face-default))
   (set-face-attribute 'window-divider-first-pixel nil
                       :foreground sumibi-color-background)
-  ;;                  :foreground (face-background 'sumibi-face-subtle))
   (set-face-attribute 'window-divider-last-pixel nil
                       :foreground sumibi-color-background)
-  ;;                  :foreground (face-background 'sumibi-face-subtle)))
   (set-face-foreground 'vertical-border sumibi-color-subtle)
 
   ;; Semantic
@@ -66,7 +63,7 @@
   (set-face 'warning                                  'sumibi-face-popout)
   (set-face 'error                                  'sumibi-face-critical)
   (set-face 'match                                    'sumibi-face-popout)
-
+  
   ;; General
   (set-face 'buffer-menu-buffer                       'sumibi-face-strong)
   (set-face 'minibuffer-prompt                        'sumibi-face-strong)
@@ -79,80 +76,83 @@
   (set-face 'isearch-fail                              'sumibi-face-faded)
   (set-face 'lazy-highlight                           'sumibi-face-subtle)
   (set-face 'trailing-whitespace                      'sumibi-face-subtle)
-  (set-face 'show-paren-match                         'sumibi-face-popout)
+  (set-face-attribute 'show-paren-match nil
+                      :foreground sumibi-color-salient
+                      :background sumibi-color-background
+                      :underline t)
   (set-face 'show-paren-mismatch                           'face-normal)
   (set-face-attribute 'tooltip nil                         :height 0.85)
   (set-face 'secondary-selection                      'sumibi-face-subtle)
   (set-face 'completions-common-part                   'sumibi-face-faded)
   (set-face 'completions-first-difference            'sumibi-face-default))
+
 (defun sumibi-theme--font-lock ()
   "Derive font-lock faces from sumibi-faces."
-  (set-face 'font-lock-comment-face                    'sumibi-face-faded)
-  (set-face 'font-lock-doc-face                        'sumibi-face-faded)
-  (set-face 'font-lock-string-face                    'sumibi-face-popout)
-  (set-face 'font-lock-constant-face                 'sumibi-face-salient)
-  (set-face 'font-lock-warning-face                   'sumibi-face-popout)
-  (set-face 'font-lock-function-name-face             'sumibi-face-strong)
-  (set-face 'font-lock-variable-name-face             'sumibi-face-strong)
-  (set-face 'font-lock-builtin-face                  'sumibi-face-salient)
-  (set-face 'font-lock-type-face                     'sumibi-face-salient)
-  (set-face 'font-lock-keyword-face                  'sumibi-face-salient))
-
+  (set-face-attribute 'font-lock-comment-face nil
+                      :background "#fdf0ca"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-doc-face nil
+                      :background "#fdf0ca"
+                      :foreground sumibi-color-foreground
+                      :bold 'nil)
+  (set-face-attribute 'font-lock-string-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-constant-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-warning-face nil
+                      :background sumibi-color-background
+                      :foreground sumibi-color-critical)
+  (set-face-attribute 'font-lock-function-name-face nil
+                      :background "#d0e2ff"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-variable-name-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-builtin-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-type-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground)
+  (set-face-attribute 'font-lock-keyword-face nil
+                      :background "#e0e0e0"
+                      :foreground sumibi-color-foreground))
 
 (defun sumibi-theme--mode-line ()
   "Derive mode-line and header-line faces from sumibi-faces."
   (set-face-attribute 'mode-line nil
-                      :height 0.1
-                      :foreground (if (display-graphic-p)
-                                      (face-background 'sumibi-face-default)
-                                    (face-foreground 'sumibi-face-default))
-                      :background (face-background 'sumibi-face-default)
-                      :underline  (if (display-graphic-p)
-                                      (face-background 'sumibi-face-subtle)
-                                    t)
-                      :overline nil
-                      :box nil)
+                      :foreground sumibi-color-faded
+                      :background sumibi-color-background
+                      :weight 'bold
+                      :box `(:line-width 1
+                             :color ,(face-background 'sumibi-face-default)
+                             :style nil))
   (set-face-attribute 'mode-line-inactive nil
-                      :height 0.1
-                      :foreground (if (display-graphic-p)
-                                      (face-background 'sumibi-face-default)
-                                    (face-foreground 'sumibi-face-default))
-                      :background (face-background 'sumibi-face-default)
-                      :underline (if (display-graphic-p)
-                                     (face-background 'sumibi-face-subtle)
-                                   t)
-                      :overline nil
-                      :inherit nil
-                      :box nil)
-  
-  ;;(when (display-graphic-p)
+                      :foreground sumibi-color-strong
+                      :background sumibi-color-background
+                      :box `(:line-width 1
+                      :color ,(face-background 'sumibi-face-default)
+                      :style nil))
+  (set-face-attribute 'mode-line-buffer-id nil
+                      :foreground sumibi-color-strong
+                      :bold t)
+  (set-face-attribute 'mode-line-emphasis nil
+                      :foreground sumibi-color-strong
+                      :bold t)
+  (set-face-attribute 'mode-line-highlight nil
+                      :foreground sumibi-color-strong)
   (set-face-attribute 'header-line nil
-                       :weight 'light
-                       :foreground (face-foreground 'sumibi-face-default)
-                       :background (face-background 'sumibi-face-default)
-
-                       :overline nil
-                       :underline nil
-                       :box nil
-                       :box `(:line-width 1
-                                          :color ,(face-background 'sumibi-face-default)
-                                          :style nil)
-                       :inherit nil)
-
-  ;; (when (not (display-graphic-p))
-  ;;   (set-face-attribute 'header-line nil
-  ;;                    :weight 'light
-  ;;                       :foreground (face-foreground 'sumibi-face-default)
-  ;;                       :background (face-background 'sumibi-face-subtle)
-  ;;                       :inverse-video t
-  ;;                       :overline nil
-  ;;                       :underline nil
-  ;;                       :box nil
-  ;;                            :inherit nil))
-
-  ;; (set-face-attribute 'internal-border nil
-  ;;                     :background (face-foreground 'sumibi-face-default))
-
+                      :foreground (face-foreground 'sumibi-face-faded)
+                      :background (face-background 'sumibi-face-default)
+                      :weight 'bold
+                      :overline nil
+                      :underline nil
+                      :box `(:line-width 1
+                                         :color ,(face-background 'sumibi-face-default)
+                                         :style nil)
+                      :inherit nil)
   (set-face-attribute 'internal-border nil
                        :background (face-background 'sumibi-face-default)))
 
@@ -171,9 +171,7 @@
   "Derive hl-line faces from sumibi faces."
   (with-eval-after-load 'hl-line
     (set-face-attribute 'hl-line nil
-                         :background sumibi-color-highlight)))
-
-
+                        :background sumibi-color-highlight)))
 
 (defun sumibi-theme--buttons ()
   "Derive button faces from sumibi faces."
@@ -200,7 +198,6 @@
                                             :color ,(face-foreground 'sumibi-face-salient)
                                             :style nil)
                          :inverse-video nil)))
-
 
 (defun sumibi-theme--info ()
   "Derive info faces from sumibi faces."
@@ -323,12 +320,232 @@ function is a convenience wrapper used by `describe-package-1'."
       (apply #'insert-text-button button-text
                'face button-face 'follow-link t properties))))
 
+(defun sumibi-theme--hydra ()
+  "Derive hydra faces from sumibi faces."
+  (with-eval-after-load 'hydra
+    (set-face 'hydra-face-amaranth 'sumibi-face-strong)
+    (set-face 'hydra-face-blue     'sumibi-face-strong)
+    (set-face 'hydra-face-pink     'sumibi-face-strong)
+    (set-face 'hydra-face-red      'sumibi-face-strong)
+    (set-face 'hydra-face-teal     'sumibi-face-strong)))
 
 (defun sumibi-theme--flyspell ()
   "Derive flyspell faces from sumibi faces."
   (with-eval-after-load 'flyspell
-    (set-face 'flyspell-duplicate                     'sumibi-face-popout)
-    (set-face 'flyspell-incorrect                     'sumibi-face-popout)))
+    (set-face 'flyspell-duplicate                     'sumibi-face-default)
+    (set-face-attribute 'flyspell-incorrect nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)))
+
+(defun sumibi-theme--parinfer-rust ()
+  "Derive parinfer-rust faces from sumibi-faces"
+  (with-eval-after-load 'parinfer-rust
+    (set-face-attribute 'parinfer-rust-dim-parens nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)))
+
+
+(defun sumibi-theme--rainbow-delimiters ()
+  "Derive rainbow-delimiters faces from sumibi faces."
+  (with-eval-after-load 'rainbow-delimiters
+    (set-face-attribute 'rainbow-delimiters-depth-1-face nil
+                        :foreground sumibi-color-strong
+                        :weight 'bold)
+    (set-face-attribute 'rainbow-delimiters-depth-2-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-3-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-4-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-5-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-6-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-7-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-8-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-depth-9-face nil
+                        :foreground sumibi-color-faded)
+    (set-face-attribute 'rainbow-delimiters-base-error-face nil
+                        :foreground sumibi-color-critical
+                        :background sumibi-color-background
+                        :weight 'bold)))
+
+
+(defun sumibi-theme--goggles ()
+  "Derive goggles faces from sumibi faces"
+  (with-eval-after-load 'goggles
+    (set-face-attribute 'goggles-added nil
+                        :background "#defbe6")
+    (set-face-attribute 'goggles-changed nil
+                        :background "#f1c21b")
+    (set-face-attribute 'goggles-removed nil
+                        :background "#fff1f1")))
+
+(defun sumibi-theme--keycast ()
+  "Derive keycast faces from sumibi faces"
+  (with-eval-after-load 'keycast
+    (set-face-attribute 'keycast-key nil
+                        :background "#d0e2ff"
+                        :foreground "#0f62fe"
+                        :weight 'bold
+                        :height 1.2
+                        :box nil)))
+
+(defun sumibi-theme--eros ()
+  "Derive eros face from sumibi faces"
+  (with-eval-after-load 'eros
+    (set-face-attribute 'eros-result-overlay-face nil
+			            :background "#defbe6"
+                        :foreground "#198038"
+                        :weight 'bold
+                        :box nil)))
+
+(defun sumibi-theme--cider-overlay ()
+  "Derive cider-overlay face from sumibi faces"
+  (with-eval-after-load 'cider
+    (set-face-attribute 'cider-result-overlay-face nil
+			            :background "#defbe6"
+                        :foreground "#198038"
+                        :weight 'bold
+                        :box nil)))
+
+
+(defun sumibi-theme--flycheck ()
+  "Derive flycheck faces from sumibi faces."
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-warning nil
+                        :underline `(:style wave :color ,sumibi-color-critical)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-info  nil
+                        :underline `(:style wave :color ,sumibi-color-faded)
+                        :background sumibi-color-background)
+    (set-face-attribute 'flycheck-error-list-error  nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical)))
+
+(defun sumibi-theme--lsp ()
+  "Derive flycheck faces from sumibi faces."
+  (with-eval-after-load 'lsp-mode
+    (set-face-attribute 'lsp-signature-posframe nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)))
+
+(defun sumibi-theme--lsp-modeline ()
+  "Derive lsp-code-actions faces from sumibi faces."
+  (with-eval-after-load 'lsp-modeline
+    (set-face-attribute 'lsp-modeline-code-actions-face nil
+                        :background sumibi-color-background
+                        :foreground "#198038")
+    (set-face-attribute 'lsp-modeline-code-actions-preferred-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical)))
+
+(defun sumibi-theme--lsp-headerline ()
+  "Derive lsp-headerline faces from sumibi faces."
+  (with-eval-after-load 'lsp-headerline
+    (set-face-attribute 'lsp-headerline-breadcrumb-deprecated-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)
+    (set-face-attribute 'lsp-headerline-breadcrumb-path-error-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)
+    (set-face-attribute 'lsp-headerline-breadcrumb-path-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'lsp-headerline-breadcrumb-path-hint-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#198038"))
+    (set-face-attribute 'lsp-headerline-breadcrumb-path-info-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#198038"))
+    (set-face-attribute 'lsp-headerline-breadcrumb-path-warning-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#f1c21b"))
+    (set-face-attribute 'lsp-headerline-breadcrumb-project-prefix-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :weight 'bold)
+    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-error-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)
+    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-hint-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#198038"))
+    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-info-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#198038"))
+    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-warning-face nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :underline `(:style wave :color "#f1c21b"))))
+
+(defun sumibi-theme--company ()
+  "Derive company faces from sumibi faces."
+  (with-eval-after-load 'company
+    (set-face 'company-echo-common              'sumibi-face-faded)
+    (set-face-attribute 'company-preview-common  nil
+                        :background "#ffffff")
+    (set-face 'company-preview-search           'sumibi-face-faded)
+    (set-face-attribute 'company-scrollbar-bg nil
+                        :background "#ffffff")
+    (set-face-attribute 'company-scrollbar-fg nil
+                        :background "#ffffff")
+    (set-face 'company-tooltip-annotation       'sumibi-face-faded)
+    (set-face 'company-tooltip-common           'sumibi-face-faded)
+    (set-face-attribute 'company-tooltip-common-selection nil
+                        :background "#ffffff"
+                        :foreground sumibi-color-popout
+                        :weight 'bold)
+    (set-face-attribute 'company-tooltip-selection nil
+                        :background "#ffffff"
+                        :foreground sumibi-color-popout)
+    (set-face-attribute 'company-preview nil
+                        :background "#ffffff"
+                        :foreground sumibi-color-foreground)
+    (set-face-attribute 'company-tooltip nil
+                        :background "#ffffff"
+                        :foreground sumibi-color-foreground)))
+
+(defun sumibi-theme--ctrlf ()
+  "Derive ctrlf faces from sumibi faces."
+  (with-eval-after-load 'ctrlf
+    (set-face-attribute 'ctrlf-highlight-active nil
+                        :background "#ffd6e8"
+                        :foreground sumibi-color-foreground
+                        :box `(:line-width 1
+                               :color "#d02670"
+                               :style nil))
+    (set-face-attribute 'ctrlf-highlight-line nil
+                        :background sumibi-color-highlight)
+    (set-face-attribute 'ctrlf-highlight-passive nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :box `(:line-width 1
+                               :color "#2a0a18"
+                               :style nil))))
+
+(defun sumibi-theme--numbers-mode ()
+  "Derive highlight-numbers-mode faces from sumibi face."
+  (with-eval-after-load 'highlight-numbers
+    (set-face-attribute 'highlight-numbers-number nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-numbers)))
 
 
 (defun sumibi-theme--ido ()
@@ -337,7 +554,6 @@ function is a convenience wrapper used by `describe-package-1'."
     (set-face 'ido-first-match                       'sumibi-face-salient)
     (set-face 'ido-only-match                          'sumibi-face-faded)
     (set-face 'ido-subdir                             'sumibi-face-strong)))
-
 
 (defun sumibi-theme--diff ()
   "Derive diff faces from sumibi faces."
@@ -359,7 +575,7 @@ function is a convenience wrapper used by `describe-package-1'."
   "Derive term faces from sumibi faces, and material theme colors."
   (with-eval-after-load 'term
     ;; (setq eterm-256color-disable-bold nil)
-    (set-face 'term-bold                                   'sumibi-face-strong)
+    (set-face 'term-bold                              'sumibi-face-strong)
     (set-face-attribute 'term-color-black nil
                          :foreground (face-foreground 'sumibi-face-default)
                          :background (face-foreground 'sumibi-face-default))
@@ -367,24 +583,23 @@ function is a convenience wrapper used by `describe-package-1'."
                          :foreground (face-background 'sumibi-face-default)
                          :background (face-background 'sumibi-face-default))
     (set-face-attribute 'term-color-blue nil
-                         :foreground "#7EA0D0"
-                         :background "#8FB5EB")
+                         :foreground sumibi-color-foreground
+                         :background sumibi-color-foreground)
     (set-face-attribute 'term-color-cyan nil
-                         :foreground "#91AFB3"
-                         :background "#7fACB3")
+                         :foreground sumibi-color-foreground
+                         :background sumibi-color-foreground)
     (set-face-attribute 'term-color-green nil
-                         :foreground "#3A84B3"
-                         :background "#4197CC")
+                         :foreground sumibi-color-salient
+                         :background sumibi-color-salient)
     (set-face-attribute 'term-color-magenta nil
-                         :foreground "#435493"
-                         :background "#5064AD")
+                         :foreground sumibi-color-salient
+                         :background sumibi-color-salient)
     (set-face-attribute 'term-color-red nil
-                         :foreground "#13102F"
-                         :background "#1D1847")
+                         :foreground sumibi-color-critical
+                         :background sumibi-color-critical)
     (set-face-attribute 'term-color-yellow nil
-                         :foreground "#5771ab"
-                         :background "#6483c4")))
-
+                         :foreground sumibi-color-critical
+                         :background sumibi-color-critical)))
 
 (defun sumibi-theme--calendar ()
   "Derive calendar faces from sumibi faces."
@@ -420,7 +635,6 @@ function is a convenience wrapper used by `describe-package-1'."
   "Derive org faces from sumibi faces."
   (with-eval-after-load 'org
     (set-face 'org-archived                            'sumibi-face-faded)
-
     (set-face 'org-block                                       'hl-line)
     (set-face 'org-block-begin-line                    'sumibi-face-faded)
     (set-face 'org-block-end-line                      'sumibi-face-faded)
@@ -428,7 +642,6 @@ function is a convenience wrapper used by `describe-package-1'."
       (set-face-attribute 'org-block nil                      :extend t)
       (set-face-attribute 'org-block-begin-line nil           :extend t)
       (set-face-attribute 'org-block-end-line nil             :extend t))
-
     (set-face 'org-checkbox                            'sumibi-face-faded)
     (set-face 'org-checkbox-statistics-done            'sumibi-face-faded)
     (set-face 'org-checkbox-statistics-todo            'sumibi-face-faded)
@@ -448,8 +661,6 @@ function is a convenience wrapper used by `describe-package-1'."
     (set-face 'org-footnote                            'sumibi-face-faded)
     (set-face 'org-formula                             'sumibi-face-faded)
     (set-face 'org-headline-done                       'sumibi-face-faded)
-    ;; (set-face 'org-hide                             'sumibi-face-faded)
-    ;; (set-face 'org-indent                           'sumibi-face-faded)
     (set-face 'org-latex-and-related                   'sumibi-face-faded)
     (set-face 'org-level-1                            'sumibi-face-strong)
     (set-face 'org-level-2                            'sumibi-face-strong)
@@ -484,78 +695,26 @@ function is a convenience wrapper used by `describe-package-1'."
     (set-face 'org-verse                               'sumibi-face-faded)
     (set-face 'org-warning                            'sumibi-face-popout)))
 
+(defun sumibi-theme--dired ()
+  "Derive dired faces from sumibi faces"
+  (with-eval-after-load 'dired
+    (set-face-attribute 'dired-header nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-foreground
+                        :weight 'bold)
+    (set-face-attribute 'dired-flagged nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)
+    (set-face-attribute 'dired-warning nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)
+    (set-face-attribute 'dired-set-id nil
+                        :background sumibi-color-background
+                        :foreground sumibi-color-critical
+                        :weight 'bold)))
 
-(defun sumibi-theme--mu4e ()
-  "Derive mu4e faces from sumibi faces."
-  (with-eval-after-load 'mu4e
-    (set-face 'mu4e-attach-number-face                'sumibi-face-strong)
-    (set-face 'mu4e-cited-1-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-2-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-3-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-4-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-5-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-6-face                       'sumibi-face-faded)
-    (set-face 'mu4e-cited-7-face                       'sumibi-face-faded)
-    (set-face 'mu4e-compose-header-face                'sumibi-face-faded)
-    (set-face 'mu4e-compose-separator-face             'sumibi-face-faded)
-    (set-face 'mu4e-contact-face                     'sumibi-face-salient)
-    (set-face 'mu4e-context-face                       'sumibi-face-faded)
-    (set-face 'mu4e-draft-face                         'sumibi-face-faded)
-    (set-face 'mu4e-flagged-face                      'sumibi-face-popout)
-    (set-face 'mu4e-footer-face                        'sumibi-face-faded)
-    (set-face 'mu4e-forwarded-face                   'sumibi-face-default)
-    (set-face 'mu4e-header-face                      'sumibi-face-default)
-    (set-face 'mu4e-header-highlight-face                      'hl-line)
-    (set-face 'mu4e-header-key-face                   'sumibi-face-strong)
-    (set-face 'mu4e-header-marks-face                  'sumibi-face-faded)
-    (set-face 'mu4e-header-title-face                 'sumibi-face-strong)
-    (set-face 'mu4e-header-value-face                'sumibi-face-default)
-    (set-face 'mu4e-highlight-face                    'sumibi-face-popout)
-    (set-face 'mu4e-link-face                        'sumibi-face-salient)
-    (set-face 'mu4e-modeline-face                      'sumibi-face-faded)
-    (set-face 'mu4e-moved-face                         'sumibi-face-faded)
-    (set-face 'mu4e-ok-face                            'sumibi-face-faded)
-    (set-face 'mu4e-region-code                        'sumibi-face-faded)
-    (set-face 'mu4e-replied-face                     'sumibi-face-default)
-    (set-face 'mu4e-special-header-value-face        'sumibi-face-default)
-    (set-face 'mu4e-system-face                        'sumibi-face-faded)
-    (set-face 'mu4e-title-face                        'sumibi-face-strong)
-    (set-face 'mu4e-trashed-face                       'sumibi-face-faded)
-    (set-face 'mu4e-unread-face                       'sumibi-face-strong)
-    ;;(set-face-attribute 'mu4e-unread-face nil :weight 'regular)
-    (set-face 'mu4e-url-number-face                    'sumibi-face-faded)
-    (set-face 'mu4e-view-body-face                   'sumibi-face-default)
-    (set-face 'mu4e-warning-face                      'sumibi-face-popout)))
-
-
-(defun sumibi-theme--elfeed ()
-  "Derive elfeed faces from sumibi faces."
-  (with-eval-after-load 'elfeed
-    (set-face 'elfeed-log-date-face                    'sumibi-face-faded)
-    (set-face 'elfeed-log-info-level-face            'sumibi-face-default)
-    (set-face 'elfeed-log-debug-level-face           'sumibi-face-default)
-    (set-face 'elfeed-log-warn-level-face             'sumibi-face-popout)
-    (set-face 'elfeed-log-error-level-face            'sumibi-face-popout)
-    (set-face 'elfeed-search-tag-face                  'sumibi-face-faded)
-    (set-face 'elfeed-search-date-face                 'sumibi-face-faded)
-    (set-face 'elfeed-search-feed-face               'sumibi-face-salient)
-    (set-face 'elfeed-search-filter-face               'sumibi-face-faded)
-    (set-face 'elfeed-search-last-update-face        'sumibi-face-salient)
-    (set-face 'elfeed-search-title-face              'sumibi-face-default)
-    (set-face 'elfeed-search-tag-face                  'sumibi-face-faded)
-    (set-face 'elfeed-search-unread-count-face        'sumibi-face-strong)
-    (set-face 'elfeed-search-unread-title-face        'sumibi-face-strong)))
-
-(defun sumibi-theme--deft ()
-  "Derive deft faces from sumibi faces."
-  (with-eval-after-load 'deft
-    (set-face 'deft-filter-string-error-face         'sumibi-face-popout)
-    (set-face 'deft-filter-string-face              'sumibi-face-default)
-    (set-face 'deft-header-face                     'sumibi-face-salient)
-    (set-face 'deft-separator-face                    'sumibi-face-faded)
-    (set-face 'deft-summary-face                      'sumibi-face-faded)
-    (set-face 'deft-time-face                       'sumibi-face-salient)
-    (set-face 'deft-title-face                       'sumibi-face-strong)))
 
 (defun sumibi-theme--rst ()
   "Derive rst faces from sumibi faces."
@@ -657,9 +816,9 @@ function is a convenience wrapper used by `describe-package-1'."
   "Derive helm faces from sumibi faces."
   (with-eval-after-load 'helm
     (set-face 'helm-selection                '(sumibi-face-strong sumibi-face-subtle))
-    (set-face 'helm-match                                       'sumibi-face-strong)
-    (set-face 'helm-source-header                              'sumibi-face-salient)
-    (set-face 'helm-visible-mark                                'sumibi-face-strong)))
+    (set-face 'helm-match                    'sumibi-face-strong)
+    (set-face 'helm-source-header            'sumibi-face-salient)
+    (set-face 'helm-visible-mark             'sumibi-face-strong)))
 
 (defun sumibi-theme--helm-swoop ()
   "Derive helm faces from sumibi faces."
@@ -669,79 +828,71 @@ function is a convenience wrapper used by `describe-package-1'."
 (defun sumibi-theme--helm-occur ()
   "Derive helm faces from sumibi faces."
   (with-eval-after-load 'helm-occur
-    (set-face 'helm-moccur-buffer                               'sumibi-face-strong)))
+    (set-face 'helm-moccur-buffer             'sumibi-face-strong)))
 
 (defun sumibi-theme--helm-ff ()
   "Derive helm faces from sumibi faces."
   (with-eval-after-load 'helm-ff
-    (set-face 'helm-ff-file                                      'sumibi-face-faded)
-    (set-face 'helm-ff-prefix                                   'sumibi-face-strong)
-    (set-face 'helm-ff-dotted-directory                          'sumibi-face-faded)
-    (set-face 'helm-ff-directory                                'sumibi-face-strong)
-    (set-face 'helm-ff-executable                               'sumibi-face-popout)))
+    (set-face 'helm-ff-file                 'sumibi-face-faded)
+    (set-face 'helm-ff-prefix               'sumibi-face-strong)
+    (set-face 'helm-ff-dotted-directory     'sumibi-face-faded)
+    (set-face 'helm-ff-directory            'sumibi-face-strong)
+    (set-face 'helm-ff-executable           'sumibi-face-popout)))
 
 (defun sumibi-theme--helm-grep ()
   "Derive helm faces from sumibi faces."
   (with-eval-after-load 'helm-grep
-    (set-face 'helm-grep-match                                  'sumibi-face-strong)
-    (set-face 'helm-grep-file                                    'sumibi-face-faded)
-    (set-face 'helm-grep-lineno                                  'sumibi-face-faded)
-    (set-face 'helm-grep-finish                                'sumibi-face-default)))
-
-(defun sumibi-theme--company ()
-  "Derive company tooltip window from sumibi faces."
-  (with-eval-after-load 'company
-    (set-face 'company-tooltip-selection                   '(sumibi-face-strong sumibi-face-subtle))
-    (set-face-attribute 'company-tooltip-selection nil :background sumibi-color-popout)
-    
-    (set-face 'company-tooltip                                               'sumibi-face-subtle)
-
-    (set-face 'company-scrollbar-fg                                          'sumibi-face-faded)
-    (set-face-attribute 'company-scrollbar-fg nil :background sumibi-color-foreground)
-    
-    (set-face 'company-scrollbar-bg                                          'sumibi-face-default)
-    (set-face-attribute 'company-scrollbar-bg nil :background sumibi-color-faded)
-
-    (set-face 'company-tooltip-common                                        'sumibi-face-faded)
-    (set-face 'company-tooltip-common-selection            '(sumibi-face-strong sumibi-face-subtle))
-    (set-face-attribute 'company-tooltip-common-selection nil :background sumibi-color-popout)
-    
-    (set-face 'company-tooltip-annotation                                    'sumibi-face-default)
-    (set-face 'company-tooltip-annotation-selection        '(sumibi-face-strong sumibi-face-subtle))))
+    (set-face 'helm-grep-match                        'sumibi-face-strong)
+    (set-face 'helm-grep-file                         'sumibi-face-faded)
+    (set-face 'helm-grep-lineno                       'sumibi-face-faded)
+    (set-face 'helm-grep-finish                       'sumibi-face-default)))
 
 (defun sumibi-theme ()
   "Derive many, many faces from the core sumibi faces."
-  (sumibi-theme--basics)
-  (sumibi-theme--font-lock)
-  (sumibi-theme--mode-line)
-  (sumibi-theme--minibuffer)
-  (sumibi-theme--buttons)
-  (sumibi-theme--info)
-  (sumibi-theme--bookmark)
-  (sumibi-theme--speedbar)
-  (sumibi-theme--message)
-  (sumibi-theme--outline)
-  (sumibi-theme--customize)
-  (sumibi-theme--package)
-  (sumibi-theme--flyspell)
-  (sumibi-theme--ido)
-  (sumibi-theme--diff)
-  (sumibi-theme--term)
-  (sumibi-theme--calendar)
   (sumibi-theme--agenda)
-  (sumibi-theme--org)
-  (sumibi-theme--mu4e)
-  (sumibi-theme--elfeed)
-  (sumibi-theme--deft)
-  (sumibi-theme--rst)
-  (sumibi-theme--markdown)
-  (sumibi-theme--ivy)
+  (sumibi-theme--basics)
+  (sumibi-theme--bookmark)
+  (sumibi-theme--buttons)
+  (sumibi-theme--calendar)
+  (sumibi-theme--company)
+  (sumibi-theme--ctrlf)
+  (sumibi-theme--customize)
+  (sumibi-theme--diff)
+  (sumibi-theme--flycheck)
+  (sumibi-theme--flyspell)
+  (sumibi-theme--font-lock)
   (sumibi-theme--helm)
-  (sumibi-theme--helm-swoop)
-  (sumibi-theme--helm-occur)
   (sumibi-theme--helm-ff)
   (sumibi-theme--helm-grep)
+  (sumibi-theme--helm-occur)
+  (sumibi-theme--helm-swoop)
+  (sumibi-theme--rainbow-delimiters)
   (sumibi-theme--hl-line)
-  (sumibi-theme--company))
-
+  (sumibi-theme--ido)
+  (sumibi-theme--info)
+  (sumibi-theme--ivy)
+  (sumibi-theme--markdown)
+  (sumibi-theme--message)
+  (sumibi-theme--minibuffer)
+  (sumibi-theme--parinfer-rust)
+  (sumibi-theme--dired)
+  (sumibi-theme--mode-line)
+  (sumibi-theme--org)
+  (sumibi-theme--outline)
+  (sumibi-theme--package)
+  (sumibi-theme--eros)
+  (sumibi-theme--cider-overlay)
+  (sumibi-theme--hydra)
+  (sumibi-theme--goggles)
+  (sumibi-theme--numbers-mode)
+  (sumibi-theme--rst)
+  (sumibi-theme--keycast)
+  (sumibi-theme--lsp)
+  (sumibi-theme--lsp-modeline)
+  (sumibi-theme--lsp-headerline)
+  (sumibi-theme--speedbar)
+  (sumibi-theme--term))
+ 
 (provide 'sumibi-theme)
+
+;;; sumibi-theme.el ends here

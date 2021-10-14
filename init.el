@@ -16,9 +16,8 @@
   +flycheck
   +latex
   +org
+  +c
   ;;+guile
-  ;;+git
   ;;+cl
   ;;+parinfer
-  ;;+c
   )

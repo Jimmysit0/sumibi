@@ -14,7 +14,7 @@
 (setq use-dialog-box nil)
 
 ;; Highlight line
-(global-hl-line-mode +1)
+(global-hl-line-mode +0)
 
 ;; Highlight matchin paren
 (show-paren-mode 1)
