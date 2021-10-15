@@ -8,6 +8,7 @@
   +sumibi-theme
   +numbers
   +parentheses
+  +company
   +buffer-move
   +ctrls
   +screenshot
