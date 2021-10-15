@@ -78,6 +78,18 @@ information and this can be made by setting a very light
 background color that is barely perceptible."
   :group 'sumibi)
 
+(defface sumibi-face-region nil
+  "Region face, used when we select something."
+  :group 'sumibi)
+
+(defface sumibi-face-function nil
+  "Highlight that functions receive."
+  :group 'sumibi)
+
+(defface sumibi-face-comment nil
+  "Highlight that comments receive."
+  :group 'sumibi)
+
 (defface sumibi-face-header-default nil
   "Default face for ther header line."
   :group 'sumibi)
@@ -188,6 +200,15 @@ background color that is barely perceptible."
 
   (set-face-attribute 'sumibi-face-subtle nil
                       :background sumibi-color-subtle)
+
+  (set-face-attribute 'sumibi-face-region nil
+                      :background sumibi-color-region)
+
+  (set-face-attribute 'sumibi-face-function nil
+                      :background sumibi-color-function)
+
+  (set-face-attribute 'sumibi-face-comment nil
+                      :background sumibi-color-comment)
 
   (set-face-attribute 'sumibi-face-header-default nil
                       :foreground sumibi-color-foreground

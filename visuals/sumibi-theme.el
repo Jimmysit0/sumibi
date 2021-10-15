@@ -33,7 +33,7 @@
   (set-face 'italic                                    'sumibi-face-faded)
   (set-face 'bold-italic                              'sumibi-face-strong)
   (set-face-attribute 'region nil
-                      :background "#ffd6e8"
+                      :background sumibi-color-region
                       :foreground sumibi-color-foreground)
   (set-face 'highlight                                'sumibi-face-subtle)
   (set-face 'fixed-pitch-serif                       'sumibi-face-default)
@@ -89,35 +89,35 @@
 (defun sumibi-theme--font-lock ()
   "Derive font-lock faces from sumibi-faces."
   (set-face-attribute 'font-lock-comment-face nil
-                      :background "#fdf0ca"
+                      :background sumibi-color-comment
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-doc-face nil
-                      :background "#fdf0ca"
+                      :background sumibi-color-comment
                       :foreground sumibi-color-foreground
                       :bold 'nil)
   (set-face-attribute 'font-lock-string-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-constant-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-warning-face nil
                       :background sumibi-color-background
                       :foreground sumibi-color-critical)
   (set-face-attribute 'font-lock-function-name-face nil
-                      :background "#d0e2ff"
+                      :background sumibi-color-function
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-variable-name-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-builtin-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-type-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground)
   (set-face-attribute 'font-lock-keyword-face nil
-                      :background "#e0e0e0"
+                      :background sumibi-color-subtle
                       :foreground sumibi-color-foreground))
 
 (defun sumibi-theme--mode-line ()
@@ -421,73 +421,6 @@ function is a convenience wrapper used by `describe-package-1'."
     (set-face-attribute 'flycheck-error-list-error  nil
                         :background sumibi-color-background
                         :foreground sumibi-color-critical)))
-
-(defun sumibi-theme--lsp ()
-  "Derive flycheck faces from sumibi faces."
-  (with-eval-after-load 'lsp-mode
-    (set-face-attribute 'lsp-signature-posframe nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground)))
-
-(defun sumibi-theme--lsp-modeline ()
-  "Derive lsp-code-actions faces from sumibi faces."
-  (with-eval-after-load 'lsp-modeline
-    (set-face-attribute 'lsp-modeline-code-actions-face nil
-                        :background sumibi-color-background
-                        :foreground "#198038")
-    (set-face-attribute 'lsp-modeline-code-actions-preferred-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-critical)))
-
-(defun sumibi-theme--lsp-headerline ()
-  "Derive lsp-headerline faces from sumibi faces."
-  (with-eval-after-load 'lsp-headerline
-    (set-face-attribute 'lsp-headerline-breadcrumb-deprecated-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-critical
-                        :weight 'bold)
-    (set-face-attribute 'lsp-headerline-breadcrumb-path-error-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-critical
-                        :weight 'bold)
-    (set-face-attribute 'lsp-headerline-breadcrumb-path-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground)
-    (set-face-attribute 'lsp-headerline-breadcrumb-path-hint-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#198038"))
-    (set-face-attribute 'lsp-headerline-breadcrumb-path-info-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#198038"))
-    (set-face-attribute 'lsp-headerline-breadcrumb-path-warning-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#f1c21b"))
-    (set-face-attribute 'lsp-headerline-breadcrumb-project-prefix-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :weight 'bold)
-    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground)
-    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-error-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-critical
-                        :weight 'bold)
-    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-hint-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#198038"))
-    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-info-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#198038"))
-    (set-face-attribute 'lsp-headerline-breadcrumb-symbols-warning-face nil
-                        :background sumibi-color-background
-                        :foreground sumibi-color-foreground
-                        :underline `(:style wave :color "#f1c21b"))))
 
 (defun sumibi-theme--company ()
   "Derive company faces from sumibi faces."
@@ -881,9 +814,6 @@ function is a convenience wrapper used by `describe-package-1'."
   (sumibi-theme--numbers-mode)
   (sumibi-theme--rst)
   (sumibi-theme--keycast)
-  (sumibi-theme--lsp)
-  (sumibi-theme--lsp-modeline)
-  (sumibi-theme--lsp-headerline)
   (sumibi-theme--speedbar)
   (sumibi-theme--term))
  
