@@ -4,16 +4,26 @@
 
 (defun sumibi-theme-set-dark ()
   (setq frame-background-mode    'dark)
-  (setq sumibi-color-foreground "#fdf4c1")
-  (setq sumibi-color-strong     "#fdf4c1")
-  (setq sumibi-color-background "#1d2021")
-  (setq sumibi-color-highlight  "#1d2021")
-  (setq sumibi-color-critical   "#fb4933")
-  (setq sumibi-color-salient    "#fb4933")
-  (setq sumibi-color-popout     "#b8bb26")
-  (setq sumibi-color-subtle     "#434C5E")
-  (setq sumibi-color-faded      "#7c6f64"))
+
+  ;; basic colors
+  (setq sumibi-color-foreground "#d3c6aa")
+  (setq sumibi-color-strong     "#d3c6aa")
+  (setq sumibi-color-background "#2f383e")
+  (setq sumibi-color-highlight  "#374247")
+  (setq sumibi-color-critical   "#d7b97d")
+  (setq sumibi-color-salient    "#a7c080")
+  (setq sumibi-color-popout     "#a7c080")
+  (setq sumibi-color-subtle     "#868d80")
+  (setq sumibi-color-faded      "#868d80")
+  (setq sumibi-color-region     "#404c51")
+
+  ;; programming
+  (setq sumibi-color-numbers    "#d699b6")
+  (setq sumibi-color-function   "#374247")
+  (setq sumibi-color-comment    "#374247"))
 
 (sumibi-theme-set-dark)
 
 (provide 'sumibi-theme-dark)
+
+;;; sumibi-theme-dark.el ends here
