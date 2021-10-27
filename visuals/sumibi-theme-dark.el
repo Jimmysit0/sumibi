@@ -14,7 +14,7 @@
   (setq sumibi-color-salient    "#a7c080")
   (setq sumibi-color-popout     "#a7c080")
   (setq sumibi-color-subtle     "#868d80")
-  (setq sumibi-color-faded      "#374247")
+  (setq sumibi-color-faded      "#fbeed1")
   (setq sumibi-color-region     "#404c51")
 
   ;; programming
