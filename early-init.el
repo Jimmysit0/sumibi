@@ -28,4 +28,7 @@
 ;; Stop emacs beeps
 (setq ring-bell-function 'ignore)
 
+;; Stop creating annoying ## files
+(setq auto-save-default nil) 
+
 

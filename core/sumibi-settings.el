@@ -94,13 +94,4 @@
 (put 'scroll-left 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 
-;; Native-comp setting for Emacs 28+
-(if (and (not (version< emacs-version "28.0")) (featurep 'nativecomp))
-    (use-package comp
-      :straight nil
-      :config
-      (setq-default comp-async-compilation t
-                    comp-deferred-compilation nil
-                    comp-async-report-warnings-errors nil)))
-
 (provide 'sumibi-settings)

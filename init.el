@@ -10,14 +10,14 @@
   +parentheses
   +company
   +buffer-move
-  +ctrls
   +screenshot
+  +ctrls
   +elcord
   +clojure
   +nix
+  +lua
   +flycheck
   +latex
-  +org
   +c
   ;;+guile
   ;;+cl
