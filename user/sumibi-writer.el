@@ -31,7 +31,7 @@ etc.
       (propertize (concat (mapconcat
                            #'number-to-string
                            numbering ".") " | " )
-                  'face `(:family "Comic Code"
+                  'face `(:family "Codelia"
                           :height 250
                           :foreground ,sumibi-color-faded))
     (propertize (concat (mapconcat
@@ -42,7 +42,7 @@ etc.
 
 ;; Specific face for headline stars
 (font-lock-add-keywords 'writer-mode
-             '(("^*+ " 0 `(:family "Comic Code"
+             '(("^*+ " 0 `(:family "Codelia"
                            :height 140
                            :foreground ,sumibi-color-faded) prepend)
                ) 'append)
