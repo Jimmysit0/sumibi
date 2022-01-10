@@ -1,6 +1,6 @@
 ;; Elcord -*- lexical-binding: t; -*-
 
-(defun fili/elcord-buffer-details-format ()
+(defun sumbi/elcord-buffer-details-format ()
   "Return the buffer details string shown on discord."
   (format "Magicians Are Conjuring"))
 
