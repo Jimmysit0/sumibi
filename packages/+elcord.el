@@ -1,8 +1,8 @@
 ;; Elcord -*- lexical-binding: t; -*-
 
-(defun sumbi/elcord-buffer-details-format ()
+(defun sumibi/elcord-buffer-details-format ()
   "Return the buffer details string shown on discord."
-  (format "Magicians Are Conjuring"))
+  (format "%s" (buffer-name)))
 
 (use-package elcord
   :config
@@ -33,7 +33,7 @@
                                                       (term-mode . "x-mode_icon")
                                                       (shell-mode . "x-mode_icon")
 				                 (vterm-mode . "x-mode_icon")))
-  (setq elcord-client-id "930069075344900197")
+  (setq elcord-client-id "930189119437549648")
   (setq elcord-quiet nil
         elcord-editor-icon "elisp-mode_icon"
         elcord-buffer-details-format-function 'sumibi/elcord-buffer-details-format
