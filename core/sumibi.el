@@ -154,13 +154,6 @@
 (when (file-exists-p custom-file)
   (load custom-file t t))
 
-;; Server
-(use-package server
-  :straight nil
-  :hook (after-init . server-mode)
-  :config
-  (add-hook 'server-done-hook 'recentf-cleanup))
-
 ;; Here we go
 (defmacro sumibi/init (&rest body)
   (declare (indent defun))

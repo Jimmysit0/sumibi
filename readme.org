@@ -1,7 +1,7 @@
 #+TITLE: Sumibi
 
 * What's this?
-  This is my personal Emacs config. 
+  This is my personal Emacs config based on [[https://github.com/ogdenwebb/snug-emacs][snug-emacs]] and [[https://github.com/rougier/nano-emacs][nano-emacs]]. 
 
 * Dependencies
   You need the Comic Code & Captain Code fonts. 
