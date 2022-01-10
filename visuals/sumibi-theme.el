@@ -48,7 +48,7 @@
       (set-face 'variable-pitch                     'sumibi-face-default))
 
   (set-face-attribute 'cursor nil
-                      :background sumibi-color-salient)
+                      :background sumibi-color-popout)
   (set-face-attribute 'window-divider nil
                       :foreground (face-background 'sumibi-face-default))
   (set-face-attribute 'window-divider-first-pixel nil
@@ -367,35 +367,6 @@ function is a convenience wrapper used by `describe-package-1'."
                         :weight 'bold)))
 
 
-(defun sumibi-theme--goggles ()
-  "Derive goggles faces from sumibi faces"
-  (with-eval-after-load 'goggles
-    (set-face-attribute 'goggles-added nil
-                        :background "#defbe6")
-    (set-face-attribute 'goggles-changed nil
-                        :background "#f1c21b")
-    (set-face-attribute 'goggles-removed nil
-                        :background "#fff1f1")))
-
-(defun sumibi-theme--keycast ()
-  "Derive keycast faces from sumibi faces"
-  (with-eval-after-load 'keycast
-    (set-face-attribute 'keycast-key nil
-                        :background "#d0e2ff"
-                        :foreground "#0f62fe"
-                        :weight 'bold
-                        :height 1.2
-                        :box nil)))
-
-(defun sumibi-theme--eros ()
-  "Derive eros face from sumibi faces"
-  (with-eval-after-load 'eros
-    (set-face-attribute 'eros-result-overlay-face nil
-			            :background "#defbe6"
-                        :foreground "#198038"
-                        :weight 'bold
-                        :box nil)))
-
 (defun sumibi-theme--cider-overlay ()
   "Derive cider-overlay face from sumibi faces"
   (with-eval-after-load 'cider
@@ -453,10 +424,10 @@ function is a convenience wrapper used by `describe-package-1'."
   "Derive ctrlf faces from sumibi faces."
   (with-eval-after-load 'ctrlf
     (set-face-attribute 'ctrlf-highlight-active nil
-                        :background "#ffd6e8"
+                        :background sumibi-color-function
                         :foreground sumibi-color-foreground
                         :box `(:line-width 1
-                               :color "#d02670"
+                               :color sumibi-color-popout
                                :style nil))
     (set-face-attribute 'ctrlf-highlight-line nil
                         :background sumibi-color-highlight)
@@ -464,7 +435,7 @@ function is a convenience wrapper used by `describe-package-1'."
                         :background sumibi-color-background
                         :foreground sumibi-color-foreground
                         :box `(:line-width 1
-                               :color "#2a0a18"
+                               :color sumibi-color-comment
                                :style nil))))
 
 (defun sumibi-theme--numbers-mode ()
@@ -807,13 +778,10 @@ function is a convenience wrapper used by `describe-package-1'."
   (sumibi-theme--org)
   (sumibi-theme--outline)
   (sumibi-theme--package)
-  (sumibi-theme--eros)
   (sumibi-theme--cider-overlay)
   (sumibi-theme--hydra)
-  (sumibi-theme--goggles)
   (sumibi-theme--numbers-mode)
   (sumibi-theme--rst)
-  (sumibi-theme--keycast)
   (sumibi-theme--speedbar)
   (sumibi-theme--term))
  

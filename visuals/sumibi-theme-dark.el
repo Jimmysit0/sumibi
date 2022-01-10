@@ -11,8 +11,16 @@
   (setq sumibi-color-critical   "#fb4933")
   (setq sumibi-color-salient    "#fb4933")
   (setq sumibi-color-popout     "#b8bb26")
-  (setq sumibi-color-subtle     "#434C5E")
-  (setq sumibi-color-faded      "#7c6f64"))
+  (setq sumibi-color-subtle     "#333637")
+  (setq sumibi-color-faded      "#777979")
+  (setq sumibi-color-region     "#333637")
+  
+  ;; programming
+  (setq sumibi-color-numbers    "#f0f1d3")
+  (setq sumibi-color-function   "#211e1d")
+  (setq sumibi-color-comment    "#17191a"))
+
+
 
 (sumibi-theme-set-dark)
 
