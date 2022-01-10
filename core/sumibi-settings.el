@@ -44,8 +44,6 @@
   :config
   (setq auto-revert-interval 10
         auto-revert-check-vc-info nil
-        ;; global-auto-revert-non-file-buffers t
-        ;; TODO: Try fix hangs:
         auto-revert-use-notify nil
 
         auto-revert-verbose nil))
