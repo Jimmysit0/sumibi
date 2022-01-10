@@ -2,7 +2,7 @@
 
 (require 'sumibi-layout)
 
-(setq sumibi-font-family-monospaced "Comic Code"
+(setq sumibi-font-family-monospaced "Codelia"
           sumibi-font-size 13)
 
 (add-to-list 'command-switch-alist '("--dark"   . (lambda (args))))
