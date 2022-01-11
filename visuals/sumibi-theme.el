@@ -427,7 +427,7 @@ function is a convenience wrapper used by `describe-package-1'."
                         :background sumibi-color-function
                         :foreground sumibi-color-foreground
                         :box `(:line-width 1
-                               :color sumibi-color-popout
+                               :color ,sumibi-color-popout
                                :style nil))
     (set-face-attribute 'ctrlf-highlight-line nil
                         :background sumibi-color-highlight)
@@ -435,7 +435,7 @@ function is a convenience wrapper used by `describe-package-1'."
                         :background sumibi-color-background
                         :foreground sumibi-color-foreground
                         :box `(:line-width 1
-                               :color sumibi-color-comment
+                               :color ,sumibi-color-comment
                                :style nil))))
 
 (defun sumibi-theme--numbers-mode ()
