@@ -1,6 +1,6 @@
 #+TITLE: Sumibi
 
-* Preview [[https://ibb.co/Wzw9Z8X]]
+* Preview [[https://i.ibb.co/rpSPY8h/emcas.png]]
 
 * What's this?
   This is my personal Emacs config based on [[https://github.com/ogdenwebb/snug-emacs][snug-emacs]] and [[https://github.com/rougier/nano-emacs][nano-emacs]]. 
